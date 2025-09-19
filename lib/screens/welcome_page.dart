@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../models/sleep_quote.dart';
 import '../services/quote_service.dart';
 import '../services/preferences_service.dart';
+import '../widgets/background_container.dart';
 import 'night_timer_page.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -117,18 +118,7 @@ class _WelcomePageState extends State<WelcomePage> with TickerProviderStateMixin
           color: Color(0xFF4A90E2),
         ),
       )
-          : Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF1A202C),
-              Color(0xFF2D3748),
-              Color(0xFF1A202C),
-            ],
-          ),
-        ),
+          : WelcomeBackground(
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(24.0),

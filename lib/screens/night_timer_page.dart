@@ -4,6 +4,7 @@ import '../models/sleep_timer.dart';
 import '../services/audio_service.dart';
 import '../services/preferences_service.dart';
 import '../services/notification_service.dart';
+import '../widgets/background_container.dart';
 import 'morning_timer_page.dart';
 
 class NightTimerPage extends StatefulWidget {
@@ -171,7 +172,7 @@ class _NightTimerPageState extends State<NightTimerPage> with TickerProviderStat
     if (mounted) {
       Navigator.of(context).push(
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => const MorningTimerPage(),
+          pageBuilder: (context, animation, secondaryAnimation) => MorningTimerPage(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -193,7 +194,7 @@ class _NightTimerPageState extends State<NightTimerPage> with TickerProviderStat
   void _skipNightTimer() {
     Navigator.of(context).push(
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => const MorningTimerPage(),
+        pageBuilder: (context, animation, secondaryAnimation) => MorningTimerPage(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           return SlideTransition(
             position: Tween<Offset>(
@@ -244,17 +245,7 @@ class _NightTimerPageState extends State<NightTimerPage> with TickerProviderStat
           color: Color(0xFF4A90E2),
         ),
       )
-          : Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF1A202C),
-              Color(0xFF2D3748),
-            ],
-          ),
-        ),
+          : NightBackground(
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(24.0),

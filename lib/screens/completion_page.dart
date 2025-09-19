@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../services/preferences_service.dart';
 import '../services/notification_service.dart';
+import '../widgets/background_container.dart';
 import 'welcome_page.dart';
 
 class CompletionPage extends StatefulWidget {
@@ -10,8 +11,7 @@ class CompletionPage extends StatefulWidget {
   State<CompletionPage> createState() => _CompletionPageState();
 }
 
-class _CompletionPageState extends State<CompletionPage>
-    with TickerProviderStateMixin {
+class _CompletionPageState extends State<CompletionPage> with TickerProviderStateMixin {
   late AnimationController _fadeController;
   late AnimationController _scaleController;
   late AnimationController _bounceController;
@@ -45,15 +45,26 @@ class _CompletionPageState extends State<CompletionPage>
     _fadeAnimation = Tween<double>(
       begin: 0.0,
       end: 1.0,
-    ).animate(CurvedAnimation(parent: _fadeController, curve: Curves.easeIn));
+    ).animate(CurvedAnimation(
+      parent: _fadeController,
+      curve: Curves.easeIn,
+    ));
 
-    _scaleAnimation = Tween<double>(begin: 0.5, end: 1.0).animate(
-      CurvedAnimation(parent: _scaleController, curve: Curves.elasticOut),
-    );
+    _scaleAnimation = Tween<double>(
+      begin: 0.5,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _scaleController,
+      curve: Curves.elasticOut,
+    ));
 
-    _bounceAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
-      CurvedAnimation(parent: _bounceController, curve: Curves.bounceOut),
-    );
+    _bounceAnimation = Tween<double>(
+      begin: 0.0,
+      end: 1.0,
+    ).animate(CurvedAnimation(
+      parent: _bounceController,
+      curve: Curves.bounceOut,
+    ));
   }
 
   void _startAnimations() {
@@ -69,14 +80,16 @@ class _CompletionPageState extends State<CompletionPage>
   void _returnToHome() {
     Navigator.of(context).pushAndRemoveUntil(
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) =>
-            const WelcomePage(),
+        pageBuilder: (context, animation, secondaryAnimation) => WelcomePage(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
-          return FadeTransition(opacity: animation, child: child);
+          return FadeTransition(
+            opacity: animation,
+            child: child,
+          );
         },
         transitionDuration: const Duration(milliseconds: 500),
       ),
-      (route) => false,
+          (route) => false,
     );
   }
 
@@ -91,14 +104,7 @@ class _CompletionPageState extends State<CompletionPage>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [Color(0xFF1A202C), Color(0xFF2D3748), Color(0xFF4A90E2)],
-          ),
-        ),
+      body: CompletionBackground(
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(24.0),
@@ -142,12 +148,11 @@ class _CompletionPageState extends State<CompletionPage>
                     opacity: _fadeAnimation,
                     child: Text(
                       'Congratulations!',
-                      style: Theme.of(context).textTheme.headlineLarge
-                          ?.copyWith(
-                            fontSize: 42,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                          ),
+                      style: Theme.of(context).textTheme.headlineLarge?.copyWith(
+                        fontSize: 42,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -158,11 +163,10 @@ class _CompletionPageState extends State<CompletionPage>
                     opacity: _fadeAnimation,
                     child: Text(
                       'Get ready for notifications',
-                      style: Theme.of(context).textTheme.headlineMedium
-                          ?.copyWith(
-                            fontSize: 24,
-                            color: const Color(0xFF4CAF50),
-                          ),
+                      style: Theme.of(context).textTheme.headlineMedium?.copyWith(
+                        fontSize: 24,
+                        color: const Color(0xFF4CAF50),
+                      ),
                       textAlign: TextAlign.center,
                     ),
                   ),
@@ -192,16 +196,18 @@ class _CompletionPageState extends State<CompletionPage>
                           const SizedBox(height: 16),
                           Text(
                             'Your sleep cycle improvement journey begins now!',
-                            style: Theme.of(context).textTheme.bodyLarge
-                                ?.copyWith(fontSize: 18, height: 1.5),
+                            style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                              fontSize: 18,
+                              height: 1.5,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(height: 16),
                           Text(
                             'You\'ll receive notifications at your scheduled times to help maintain a healthy sleep routine.',
-                            style: Theme.of(
-                              context,
-                            ).textTheme.bodyMedium?.copyWith(height: 1.4),
+                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                              height: 1.4,
+                            ),
                             textAlign: TextAlign.center,
                           ),
                         ],
@@ -260,10 +266,7 @@ class _CompletionPageState extends State<CompletionPage>
                       },
                       style: OutlinedButton.styleFrom(
                         side: const BorderSide(color: Color(0xFF4CAF50)),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 24,
-                          vertical: 12,
-                        ),
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(12),
                         ),
@@ -305,7 +308,10 @@ class _CompletionPageState extends State<CompletionPage>
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.home, size: 24),
+                            Icon(
+                              Icons.home,
+                              size: 24,
+                            ),
                             SizedBox(width: 12),
                             Text(
                               'Return to Home',
@@ -339,7 +345,11 @@ class _CompletionPageState extends State<CompletionPage>
             color: const Color(0xFF4CAF50).withOpacity(0.2),
             borderRadius: BorderRadius.circular(12),
           ),
-          child: Icon(icon, color: const Color(0xFF4CAF50), size: 24),
+          child: Icon(
+            icon,
+            color: const Color(0xFF4CAF50),
+            size: 24,
+          ),
         ),
         const SizedBox(width: 16),
         Expanded(
@@ -356,7 +366,10 @@ class _CompletionPageState extends State<CompletionPage>
               ),
               Text(
                 description,
-                style: const TextStyle(color: Colors.white70, fontSize: 14),
+                style: const TextStyle(
+                  color: Colors.white70,
+                  fontSize: 14,
+                ),
               ),
             ],
           ),

@@ -4,6 +4,7 @@ import '../models/sleep_timer.dart';
 import '../services/audio_service.dart';
 import '../services/preferences_service.dart';
 import '../services/notification_service.dart';
+import '../widgets/background_container.dart';
 import 'completion_page.dart';
 
 class MorningTimerPage extends StatefulWidget {
@@ -176,7 +177,7 @@ class _MorningTimerPageState extends State<MorningTimerPage> with TickerProvider
     if (mounted) {
       Navigator.of(context).push(
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => const CompletionPage(),
+          pageBuilder: (context, animation, secondaryAnimation) => CompletionPage(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -206,7 +207,7 @@ class _MorningTimerPageState extends State<MorningTimerPage> with TickerProvider
     if (mounted) {
       Navigator.of(context).push(
         PageRouteBuilder(
-          pageBuilder: (context, animation, secondaryAnimation) => const CompletionPage(),
+          pageBuilder: (context, animation, secondaryAnimation) => CompletionPage(),
           transitionsBuilder: (context, animation, secondaryAnimation, child) {
             return SlideTransition(
               position: Tween<Offset>(
@@ -258,17 +259,7 @@ class _MorningTimerPageState extends State<MorningTimerPage> with TickerProvider
           color: Color(0xFF4A90E2),
         ),
       )
-          : Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFF1A202C),
-              Color(0xFF2D3748),
-            ],
-          ),
-        ),
+          : MorningBackground(
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.all(24.0),
