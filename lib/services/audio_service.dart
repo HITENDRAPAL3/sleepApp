@@ -1,56 +1,101 @@
-import 'package:flutter/material.dart';
+import 'dart:convert';
+import 'package:flutter/services.dart';
+import 'package:audioplayers/audioplayers.dart';
+import 'package:file_picker/file_picker.dart';
+import '../models/audio_file.dart';
 
 class AudioService {
-  
-  static const List<String> defaultTones = [
-    'Gentle Bells',
-    'Ocean Waves',
-    'Rain Sounds',
-    'Forest Ambience',
-    'Soft Piano',
-    'Wind Chimes',
-    'White Noise',
-    'Bird Songs',
-  ];
+  static List<AudioFile>? _audioFiles;
+  static final AudioPlayer _audioPlayer = AudioPlayer();
 
-  static Future<List<String>> getAvailableTones() async {
-    // For demo purposes, return default tones
-    // In a real app, you would scan the assets/music folder
-    return defaultTones;
+  static Future<List<AudioFile>> _loadAudioFiles() async {
+    if (_audioFiles != null) return _audioFiles!;
+
+    try {
+      final String audioJson = await rootBundle.loadString('assets/audio/audio_files.json');
+      final List<dynamic> audioData = json.decode(audioJson);
+      _audioFiles = audioData.map((json) => AudioFile.fromJson(json)).toList();
+      return _audioFiles!;
+    } catch (e) {
+      // Fallback audio files in case of error
+      _audioFiles = [
+        const AudioFile(
+          id: 'gentle_bell',
+          name: 'Gentle Bell',
+          filename: 'gentle_bell.mp3',
+          type: 'tone',
+          description: 'A soft, calming bell sound',
+        ),
+        const AudioFile(
+          id: 'ocean_waves',
+          name: 'Ocean Waves',
+          filename: 'ocean_waves.mp3',
+          type: 'nature',
+          description: 'Relaxing ocean wave sounds',
+        ),
+      ];
+      return _audioFiles!;
+    }
   }
 
-  static Future<String?> pickCustomTone() async {
+  static Future<List<AudioFile>> getAvailableAudioFiles() async {
+    return await _loadAudioFiles();
+  }
+
+  static Future<AudioFile?> getAudioFileById(String id) async {
+    final audioFiles = await _loadAudioFiles();
     try {
-      // For demo purposes, simulate file picker
-      debugPrint('File picker would open here');
-      // Return a simulated custom file name
-      return 'My_Custom_Song.mp3';
+      return audioFiles.firstWhere((audio) => audio.id == id);
     } catch (e) {
       return null;
     }
   }
 
-  static Future<void> playPreview(String toneName) async {
+  static Future<void> playAudio(String audioId, {String? customPath}) async {
     try {
-      // For demo purposes, we'll use a system sound
-      // In a real app, you would load the actual audio file
-      if (defaultTones.contains(toneName)) {
-        // Play a short preview of the selected tone
-        // This would load from assets/music/tone_name.mp3
-        // For now, we'll skip actual audio playback since we don't have audio files
-        // await _audioPlayer.setAsset('assets/music/preview.mp3');
-        // await _audioPlayer.play();
-        
-        // Simulate preview duration
-        await Future.delayed(const Duration(milliseconds: 500));
-        // await _audioPlayer.stop();
+      await _audioPlayer.stop();
+
+      if (customPath != null) {
+        await _audioPlayer.play(DeviceFileSource(customPath));
+      } else {
+        final audioFile = await getAudioFileById(audioId);
+        if (audioFile != null) {
+          // Note: In a real app, you would have actual audio files
+          // For this demo, we'll simulate audio playback
+          await _audioPlayer.play(AssetSource('audio/${audioFile.filename}'));
+        }
       }
     } catch (e) {
-      // Handle error silently for demo
+      print('Error playing audio: $e');
     }
   }
 
-  static Future<void> stopPreview() async {
-    debugPrint('Audio preview stopped');
+  static Future<void> stopAudio() async {
+    try {
+      await _audioPlayer.stop();
+    } catch (e) {
+      print('Error stopping audio: $e');
+    }
+  }
+
+  static Future<String?> pickCustomAudio() async {
+    try {
+      FilePickerResult? result = await FilePicker.platform.pickFiles(
+        type: FileType.audio,
+        allowMultiple: false,
+      );
+
+      if (result != null && result.files.single.path != null) {
+        return result.files.single.path;
+      }
+      return null;
+    } catch (e) {
+      print('Error picking audio file: $e');
+      return null;
+    }
+  }
+
+  static void dispose() {
+    _audioPlayer.dispose();
   }
 }

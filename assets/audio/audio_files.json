@@ -1,0 +1,72 @@
+[
+  {
+    "id": "gentle_bell",
+    "name": "Gentle Bell",
+    "filename": "gentle_bell.m4a",
+    "type": "tone",
+    "description": "A soft, calming bell sound"
+  },
+  {
+    "id": "ocean_waves",
+    "name": "Ocean Waves",
+    "filename": "ocean_waves.mp3",
+    "type": "nature",
+    "description": "Relaxing ocean wave sounds"
+  },
+  {
+    "id": "forest_birds",
+    "name": "Forest Birds",
+    "filename": "forest_birds.mp3",
+    "type": "nature",
+    "description": "Peaceful bird chirping in a forest"
+  },
+  {
+    "id": "rain_drops",
+    "name": "Rain Drops",
+    "filename": "rain_drops.mp3",
+    "type": "nature",
+    "description": "Gentle rain falling on leaves"
+  },
+  {
+    "id": "tibetan_bowl",
+    "name": "Tibetan Bowl",
+    "filename": "tibetan_bowl.mp3",
+    "type": "tone",
+    "description": "Calming Tibetan singing bowl"
+  },
+  {
+    "id": "piano_melody",
+    "name": "Piano Melody",
+    "filename": "piano_melody.mp3",
+    "type": "music",
+    "description": "Soft piano melody for relaxation"
+  },
+  {
+    "id": "wind_chimes",
+    "name": "Wind Chimes",
+    "filename": "wind_chimes.mp3",
+    "type": "tone",
+    "description": "Gentle wind chime sounds"
+  },
+  {
+    "id": "classical_lullaby",
+    "name": "Classical Lullaby",
+    "filename": "classical_lullaby.mp3",
+    "type": "music",
+    "description": "Soothing classical piece for sleep"
+  },
+  {
+    "id": "white_noise",
+    "name": "White Noise",
+    "filename": "white_noise.mp3",
+    "type": "tone",
+    "description": "Continuous white noise for masking sounds"
+  },
+  {
+    "id": "creek_water",
+    "name": "Creek Water",
+    "filename": "creek_water.mp3",
+    "type": "nature",
+    "description": "Babbling creek water sounds"
+  }
+]

@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'pages/welcome_page.dart';
-import 'pages/sleep_timer_page.dart';
-import 'pages/wake_timer_page.dart';
-import 'pages/completion_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'screens/welcome_page.dart';
 
 void main() {
   runApp(const SleepCycleApp());
@@ -14,11 +12,14 @@ class SleepCycleApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Sleep Cycle',
+      title: 'Sleep Cycle Improvement',
       theme: ThemeData(
-        primarySwatch: Colors.indigo,
-        fontFamily: 'Roboto',
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF2D3748), // Dark blue-gray
+          brightness: Brightness.dark,
+        ),
+        scaffoldBackgroundColor: const Color(0xFF1A202C),
+        useMaterial3: true,
         appBarTheme: const AppBarTheme(
           backgroundColor: Color(0xFF2D3748),
           foregroundColor: Colors.white,
@@ -26,22 +27,39 @@ class SleepCycleApp extends StatelessWidget {
         ),
         elevatedButtonTheme: ElevatedButtonThemeData(
           style: ElevatedButton.styleFrom(
-            backgroundColor: const Color(0xFF4A5568),
+            backgroundColor: const Color(0xFF4A90E2),
             foregroundColor: Colors.white,
             padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
             shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
+              borderRadius: BorderRadius.circular(12),
             ),
           ),
         ),
+        textTheme: const TextTheme(
+          headlineLarge: TextStyle(
+            color: Colors.white,
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+          ),
+          headlineMedium: TextStyle(
+            color: Colors.white,
+            fontSize: 24,
+            fontWeight: FontWeight.w600,
+          ),
+          bodyLarge: TextStyle(
+            color: Colors.white70,
+            fontSize: 16,
+            height: 1.5,
+          ),
+          bodyMedium: TextStyle(
+            color: Colors.white60,
+            fontSize: 14,
+            height: 1.4,
+          ),
+        ),
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => const WelcomePage(),
-        '/sleep-timer': (context) => const SleepTimerPage(),
-        '/wake-timer': (context) => const WakeTimerPage(),
-        '/completion': (context) => const CompletionPage(),
-      },
+      home: const WelcomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }

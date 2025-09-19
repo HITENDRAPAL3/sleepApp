@@ -1,35 +1,46 @@
+import 'dart:convert';
 import 'dart:math';
 import 'package:flutter/services.dart';
+import '../models/sleep_quote.dart';
 
 class QuoteService {
-  static List<String>? _quotes;
+  static List<SleepQuote>? _quotes;
 
-  static Future<List<String>> loadQuotes() async {
+  static Future<List<SleepQuote>> _loadQuotes() async {
     if (_quotes != null) return _quotes!;
 
     try {
-      final String quotesContent = await rootBundle.loadString('assets/quotes/sleep_quotes.txt');
-      _quotes = quotesContent
-          .split('\n')
-          .where((line) => line.trim().isNotEmpty)
-          .toList();
+      final String quotesJson = await rootBundle.loadString('assets/data/sleep_quotes.json');
+      final List<dynamic> quotesData = json.decode(quotesJson);
+      _quotes = quotesData.map((json) => SleepQuote.fromJson(json)).toList();
       return _quotes!;
     } catch (e) {
-      // Return default quotes if file loading fails
+      // Fallback quotes in case of error
       _quotes = [
-        'Sleep is the best meditation. - Dalai Lama',
-        'The best cure for insomnia is to get a lot of sleep. - W.C. Fields',
-        'Early to bed and early to rise, makes a man healthy, wealthy, and wise. - Benjamin Franklin',
-        'Sleep is that golden chain that ties health and our bodies together. - Thomas Dekker',
-        'A good laugh and a long sleep are the best cures in the doctor\'s book. - Irish Proverb',
+        const SleepQuote(
+          quote: "Sleep is the golden chain that ties health and our bodies together.",
+          author: "Thomas Dekker",
+        ),
+        const SleepQuote(
+          quote: "A good laugh and a long sleep are the best cures in the doctor's book.",
+          author: "Irish Proverb",
+        ),
+        const SleepQuote(
+          quote: "Sleep is the best meditation.",
+          author: "Dalai Lama",
+        ),
       ];
       return _quotes!;
     }
   }
 
-  static Future<String> getRandomQuote() async {
-    final quotes = await loadQuotes();
+  static Future<SleepQuote> getRandomQuote() async {
+    final quotes = await _loadQuotes();
     final random = Random();
     return quotes[random.nextInt(quotes.length)];
+  }
+
+  static Future<List<SleepQuote>> getAllQuotes() async {
+    return await _loadQuotes();
   }
 }
