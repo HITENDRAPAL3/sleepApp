@@ -3,6 +3,7 @@ import '../models/audio_file.dart';
 import '../models/sleep_timer.dart';
 import '../services/audio_service.dart';
 import '../services/preferences_service.dart';
+import '../services/notification_service.dart';
 import 'morning_timer_page.dart';
 
 class NightTimerPage extends StatefulWidget {
@@ -163,6 +164,9 @@ class _NightTimerPageState extends State<NightTimerPage> with TickerProviderStat
     );
 
     await PreferencesService.saveNightTimer(timer);
+
+    // Schedule bedtime notification
+    await NotificationService.scheduleBedtimeNotification(timer);
 
     if (mounted) {
       Navigator.of(context).push(

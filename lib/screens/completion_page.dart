@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../services/preferences_service.dart';
+import '../services/notification_service.dart';
 import 'welcome_page.dart';
 
 class CompletionPage extends StatefulWidget {
@@ -239,7 +240,50 @@ class _CompletionPageState extends State<CompletionPage>
                     ),
                   ),
 
-                  const SizedBox(height: 40),
+                  const SizedBox(height: 32),
+
+                  // Test Notification Button
+                  FadeTransition(
+                    opacity: _fadeAnimation,
+                    child: OutlinedButton.icon(
+                      onPressed: () async {
+                        await NotificationService.showTestNotification();
+                        if (mounted) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('Test notification sent!'),
+                              backgroundColor: Color(0xFF4CAF50),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                        }
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(color: Color(0xFF4CAF50)),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 24,
+                          vertical: 12,
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                      ),
+                      icon: const Icon(
+                        Icons.notification_add,
+                        color: Color(0xFF4CAF50),
+                      ),
+                      label: const Text(
+                        'Test Notification',
+                        style: TextStyle(
+                          color: Color(0xFF4CAF50),
+                          fontSize: 16,
+                          fontWeight: FontWeight.w600,
+                        ),
+                      ),
+                    ),
+                  ),
+
+                  const SizedBox(height: 24),
 
                   // Return Home Button
                   FadeTransition(

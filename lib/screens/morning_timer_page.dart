@@ -3,6 +3,7 @@ import '../models/audio_file.dart';
 import '../models/sleep_timer.dart';
 import '../services/audio_service.dart';
 import '../services/preferences_service.dart';
+import '../services/notification_service.dart';
 import 'completion_page.dart';
 
 class MorningTimerPage extends StatefulWidget {
@@ -165,6 +166,12 @@ class _MorningTimerPageState extends State<MorningTimerPage> with TickerProvider
     await PreferencesService.saveMorningTimer(timer);
     await PreferencesService.setFirstTimeUserFlag(false);
     await PreferencesService.setSetupCompleted(true);
+
+    // Schedule wake-up notification
+    await NotificationService.scheduleWakeupNotification(timer);
+
+    // Request notification permissions
+    await NotificationService.requestPermissions();
 
     if (mounted) {
       Navigator.of(context).push(
@@ -529,4 +536,3 @@ class _MorningTimerPageState extends State<MorningTimerPage> with TickerProvider
     );
   }
 }
-
