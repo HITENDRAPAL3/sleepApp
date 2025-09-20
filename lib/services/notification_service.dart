@@ -113,18 +113,40 @@ class NotificationService {
     final payload = '${timer.selectedAudioId}|bedtime|${timer.customAudioPath ?? ''}';
 
     // Schedule daily repeating notification
-    await _notifications.zonedSchedule(
-      bedtimeNotificationId,
-      '🌙 Time for Sleep',
-      'It\'s time to wind down and prepare for a good night\'s rest.',
-      _nextInstanceOfTime(timer.time),
-      notificationDetails,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation:
-      UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: DateTimeComponents.time,
-      payload: payload,
-    );
+    try {
+      await _notifications.zonedSchedule(
+        bedtimeNotificationId,
+        '🌙 Time for Sleep',
+        'It\'s time to wind down and prepare for a good night\'s rest.',
+        _nextInstanceOfTime(timer.time),
+        notificationDetails,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        uiLocalNotificationDateInterpretation:
+        UILocalNotificationDateInterpretation.absoluteTime,
+        matchDateTimeComponents: DateTimeComponents.time,
+        payload: payload,
+      );
+    } catch (e) {
+      // If exact alarms are not permitted, try with inexact scheduling
+      print('Exact alarms not permitted, falling back to inexact scheduling: $e');
+      try {
+        await _notifications.zonedSchedule(
+          bedtimeNotificationId,
+          '🌙 Time for Sleep',
+          'It\'s time to wind down and prepare for a good night\'s rest.',
+          _nextInstanceOfTime(timer.time),
+          notificationDetails,
+          androidScheduleMode: AndroidScheduleMode.inexact,
+          uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+          matchDateTimeComponents: DateTimeComponents.time,
+          payload: payload,
+        );
+      } catch (e2) {
+        print('Failed to schedule notification: $e2');
+        // Continue without notification - don't block the user flow
+      }
+    }
   }
 
   /// Schedule wake-up notification
@@ -155,18 +177,40 @@ class NotificationService {
     final payload = '${timer.selectedAudioId}|wakeup|${timer.customAudioPath ?? ''}';
 
     // Schedule daily repeating notification
-    await _notifications.zonedSchedule(
-      wakeupNotificationId,
-      '☀️ Good Morning!',
-      'Rise and shine! Start your day with energy and positivity.',
-      _nextInstanceOfTime(timer.time),
-      notificationDetails,
-      androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
-      uiLocalNotificationDateInterpretation:
-      UILocalNotificationDateInterpretation.absoluteTime,
-      matchDateTimeComponents: DateTimeComponents.time,
-      payload: payload,
-    );
+    try {
+      await _notifications.zonedSchedule(
+        wakeupNotificationId,
+        '☀️ Good Morning!',
+        'Rise and shine! Start your day with energy and positivity.',
+        _nextInstanceOfTime(timer.time),
+        notificationDetails,
+        androidScheduleMode: AndroidScheduleMode.exactAllowWhileIdle,
+        uiLocalNotificationDateInterpretation:
+        UILocalNotificationDateInterpretation.absoluteTime,
+        matchDateTimeComponents: DateTimeComponents.time,
+        payload: payload,
+      );
+    } catch (e) {
+      // If exact alarms are not permitted, try with inexact scheduling
+      print('Exact alarms not permitted, falling back to inexact scheduling: $e');
+      try {
+        await _notifications.zonedSchedule(
+          wakeupNotificationId,
+          '☀️ Good Morning!',
+          'Rise and shine! Start your day with energy and positivity.',
+          _nextInstanceOfTime(timer.time),
+          notificationDetails,
+          androidScheduleMode: AndroidScheduleMode.inexact,
+          uiLocalNotificationDateInterpretation:
+          UILocalNotificationDateInterpretation.absoluteTime,
+          matchDateTimeComponents: DateTimeComponents.time,
+          payload: payload,
+        );
+      } catch (e2) {
+        print('Failed to schedule wake-up notification: $e2');
+        // Continue without notification - don't block the user flow
+      }
+    }
   }
 
   /// Cancel a specific notification
