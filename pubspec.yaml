@@ -39,16 +39,16 @@ dependencies:
   shared_preferences: ^2.2.2
 
   # For audio playback
-  audioplayers: ^5.2.1
+  audioplayers: ^6.1.0
 
   # For file picking from device
-  file_picker: ^6.1.1
+  file_picker: ^8.1.2
 
   # For permissions
-  permission_handler: ^11.1.0
+  permission_handler: ^11.3.1
 
   # For local notifications
-  flutter_local_notifications: ^16.3.0
+  flutter_local_notifications: ^17.2.3
 
   # For timezone support
   timezone: ^0.9.2

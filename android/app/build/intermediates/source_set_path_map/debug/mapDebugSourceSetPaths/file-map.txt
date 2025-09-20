@@ -34,9 +34,9 @@ com.example.sleep.app-jetified-lifecycle-livedata-core-ktx-2.7.0-32 C:\Users\hit
 com.example.sleep.app-jetified-lifecycle-viewmodel-ktx-2.7.0-33 C:\Users\hiten\.gradle\caches\8.9\transforms\e065dea08a819dd58aa4c4f7dc315607\transformed\jetified-lifecycle-viewmodel-ktx-2.7.0\res
 com.example.sleep.app-recyclerview-1.0.0-34 C:\Users\hiten\.gradle\caches\8.9\transforms\f3410aa415b916ebf16ad4960ac4c9a1\transformed\recyclerview-1.0.0\res
 com.example.sleep.app-jetified-core-ktx-1.13.1-35 C:\Users\hiten\.gradle\caches\8.9\transforms\f72b53d845878c67cdc7de81d86c6c01\transformed\jetified-core-ktx-1.13.1\res
-com.example.sleep.app-debug-36 C:\Users\hiten\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_android-4.0.3\android\build\intermediates\packaged_res\debug\packageDebugResources
-com.example.sleep.app-debug-37 C:\Users\hiten\AppData\Local\Pub\Cache\hosted\pub.dev\file_picker-6.2.1\android\build\intermediates\packaged_res\debug\packageDebugResources
-com.example.sleep.app-debug-38 C:\Users\hiten\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_local_notifications-16.3.3\android\build\intermediates\packaged_res\debug\packageDebugResources
+com.example.sleep.app-debug-36 C:\Users\hiten\AppData\Local\Pub\Cache\hosted\pub.dev\audioplayers_android-5.2.1\android\build\intermediates\packaged_res\debug\packageDebugResources
+com.example.sleep.app-debug-37 C:\Users\hiten\AppData\Local\Pub\Cache\hosted\pub.dev\file_picker-8.3.7\android\build\intermediates\packaged_res\debug\packageDebugResources
+com.example.sleep.app-debug-38 C:\Users\hiten\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_local_notifications-17.2.4\android\build\intermediates\packaged_res\debug\packageDebugResources
 com.example.sleep.app-debug-39 C:\Users\hiten\AppData\Local\Pub\Cache\hosted\pub.dev\flutter_plugin_android_lifecycle-2.0.30\android\build\intermediates\packaged_res\debug\packageDebugResources
 com.example.sleep.app-debug-40 C:\Users\hiten\AppData\Local\Pub\Cache\hosted\pub.dev\path_provider_android-2.2.18\android\build\intermediates\packaged_res\debug\packageDebugResources
 com.example.sleep.app-debug-41 C:\Users\hiten\AppData\Local\Pub\Cache\hosted\pub.dev\permission_handler_android-12.1.0\android\build\intermediates\packaged_res\debug\packageDebugResources
