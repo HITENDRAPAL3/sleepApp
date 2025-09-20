@@ -1,6 +1,4 @@
-import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'screens/welcome_page.dart';
 import 'services/notification_service.dart';
 

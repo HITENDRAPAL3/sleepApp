@@ -49,7 +49,7 @@ class _BackgroundTestPageState extends State<BackgroundTestPage> {
   Widget _buildTestCard(String title, BackgroundType type) {
     return Card(
       elevation: 8,
-      child: Container(
+      child: SizedBox(
         height: 200,
         width: double.infinity,
         child: BackgroundContainer(

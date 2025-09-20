@@ -1,0 +1,7 @@
+com.example.sleep-pngs-0 D:\Development\FlutterApp\sleepApp\android\build\generated\res\pngs\debug
+com.example.sleep-resValues-1 D:\Development\FlutterApp\sleepApp\android\build\generated\res\resValues\debug
+com.example.sleep-packageDebugResources-2 D:\Development\FlutterApp\sleepApp\android\build\intermediates\incremental\debug\packageDebugResources\merged.dir
+com.example.sleep-packageDebugResources-3 D:\Development\FlutterApp\sleepApp\android\build\intermediates\incremental\debug\packageDebugResources\stripped.dir
+com.example.sleep-debug-4 D:\Development\FlutterApp\sleepApp\android\build\intermediates\merged_res\debug\mergeDebugResources
+com.example.sleep-debug-5 D:\Development\FlutterApp\sleepApp\android\src\debug\res
+com.example.sleep-main-6 D:\Development\FlutterApp\sleepApp\android\src\main\res

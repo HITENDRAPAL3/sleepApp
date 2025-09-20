@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import '../services/preferences_service.dart';
 import '../services/notification_service.dart';
 import '../widgets/background_container.dart';
 import 'welcome_page.dart';

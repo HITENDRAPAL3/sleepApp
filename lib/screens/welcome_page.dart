@@ -4,6 +4,7 @@ import '../services/quote_service.dart';
 import '../services/preferences_service.dart';
 import '../widgets/background_container.dart';
 import 'night_timer_page.dart';
+import 'white_noise_page.dart';
 
 class WelcomePage extends StatefulWidget {
   const WelcomePage({super.key});
@@ -82,7 +83,7 @@ class _WelcomePageState extends State<WelcomePage> with TickerProviderStateMixin
   void _navigateToNightTimer() {
     Navigator.of(context).push(
       PageRouteBuilder(
-        pageBuilder: (context, animation, secondaryAnimation) => const NightTimerPage(),
+        pageBuilder: (context, animation, secondaryAnimation) => NightTimerPage(),
         transitionsBuilder: (context, animation, secondaryAnimation, child) {
           const begin = Offset(1.0, 0.0);
           const end = Offset.zero;
@@ -276,10 +277,74 @@ class _WelcomePageState extends State<WelcomePage> with TickerProviderStateMixin
                 ),
 
                 const SizedBox(height: 24),
+
+                // White Noise Button
+                FadeTransition(
+                  opacity: _fadeAnimation,
+                  child: ScaleTransition(
+                    scale: _scaleAnimation,
+                    child: SizedBox(
+                      width: double.infinity,
+                      child: OutlinedButton(
+                        onPressed: _navigateToWhiteNoise,
+                        style: OutlinedButton.styleFrom(
+                          side: const BorderSide(color: Color(0xFF4A90E2), width: 2),
+                          foregroundColor: const Color(0xFF4A90E2),
+                          padding: const EdgeInsets.symmetric(vertical: 18),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.waves,
+                              size: 24,
+                            ),
+                            const SizedBox(width: 12),
+                            Text(
+                              'White Noise & Sounds',
+                              style: const TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.w600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+                const SizedBox(height: 24),
               ],
             ),
           ),
         ),
+      ),
+    );
+  }
+
+  void _navigateToWhiteNoise() {
+    Navigator.of(context).push(
+      PageRouteBuilder(
+        pageBuilder: (context, animation, secondaryAnimation) => const WhiteNoisePage(),
+        transitionsBuilder: (context, animation, secondaryAnimation, child) {
+          const begin = Offset(0.0, 1.0);
+          const end = Offset.zero;
+          const curve = Curves.easeInOut;
+
+          var tween = Tween(begin: begin, end: end).chain(
+            CurveTween(curve: curve),
+          );
+
+          return SlideTransition(
+            position: animation.drive(tween),
+            child: child,
+          );
+        },
+        transitionDuration: const Duration(milliseconds: 500),
       ),
     );
   }

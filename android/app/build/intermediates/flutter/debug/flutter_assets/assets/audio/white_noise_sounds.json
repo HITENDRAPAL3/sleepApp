@@ -1,0 +1,86 @@
+[
+  {
+    "id": "ocean_waves",
+    "name": "Ocean Waves",
+    "filename": "white_noise_ocean.mp3",
+    "description": "Relaxing ocean wave sounds",
+    "category": "nature"
+  },
+  {
+    "id": "rain_forest",
+    "name": "Rain Forest",
+    "filename": "white_noise_rain.mp3",
+    "description": "Gentle rain in the forest",
+    "category": "nature"
+  },
+  {
+    "id": "crackling_fire",
+    "name": "Crackling Fire",
+    "filename": "white_noise_fire.mp3",
+    "description": "Cozy fireplace crackling",
+    "category": "ambient"
+  },
+  {
+    "id": "birds_chirping",
+    "name": "Birds Chirping",
+    "filename": "white_noise_birds.mp3",
+    "description": "Peaceful bird sounds",
+    "category": "nature"
+  },
+  {
+    "id": "white_noise_static",
+    "name": "White Noise",
+    "filename": "white_noise_static.mp3",
+    "description": "Pure white noise for focus",
+    "category": "static"
+  },
+  {
+    "id": "brown_noise",
+    "name": "Brown Noise",
+    "filename": "white_noise_brown.mp3",
+    "description": "Deep brown noise",
+    "category": "static"
+  },
+  {
+    "id": "pink_noise",
+    "name": "Pink Noise",
+    "filename": "white_noise_pink.mp3",
+    "description": "Balanced pink noise",
+    "category": "static"
+  },
+  {
+    "id": "atoms_vibrating",
+    "name": "Atoms Vibrating",
+    "filename": "white_noise_atoms.mp3",
+    "description": "Atomic vibration sounds",
+    "category": "ambient"
+  },
+  {
+    "id": "thunderstorm",
+    "name": "Thunderstorm",
+    "filename": "white_noise_thunder.mp3",
+    "description": "Distant thunder and rain",
+    "category": "nature"
+  },
+  {
+    "id": "wind_through_trees",
+    "name": "Wind Through Trees",
+    "filename": "white_noise_wind.mp3",
+    "description": "Gentle wind in the forest",
+    "category": "nature"
+  },
+  {
+    "id": "river_flowing",
+    "name": "River Flowing",
+    "filename": "white_noise_river.mp3",
+    "description": "Peaceful flowing water",
+    "category": "nature"
+  },
+  {
+    "id": "space_ambience",
+    "name": "Space Ambience",
+    "filename": "white_noise_space.mp3",
+    "description": "Deep space atmosphere",
+    "category": "ambient"
+  }
+]
